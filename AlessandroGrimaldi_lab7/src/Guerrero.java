@@ -1,5 +1,6 @@
 
 import java.io.Serializable;
+import javax.swing.JOptionPane;
 
 
 public abstract class Guerrero implements Serializable {
@@ -17,9 +18,9 @@ public abstract class Guerrero implements Serializable {
 
     public Guerrero(String nombre, String nickname, float ataque, float defensa, float salud, float puntos) {
         this.nombre = nombre;
-        this.ataque = ataque;
-        this.defensa = defensa;
-        this.salud = salud;
+        setAtaque(ataque);
+        setDefensa(defensa);
+        setSalud(salud);
         this.puntos = puntos;
         this.nickname = nickname;
     }
@@ -45,7 +46,10 @@ public abstract class Guerrero implements Serializable {
     }
 
     public void setAtaque(float ataque) {
+        if(ataque>201&&ataque<301){
         this.ataque = ataque;
+        JOptionPane.showMessageDialog(null, "Ataque no cumple con los requisitos");
+        }
     }
 
     public float getDefensa() {
@@ -53,7 +57,10 @@ public abstract class Guerrero implements Serializable {
     }
 
     public void setDefensa(float defensa) {
+        if(defensa>25&&defensa<75){
         this.defensa = defensa;
+        JOptionPane.showMessageDialog(null, "Defensa no cumple con los requisitos");
+        }
     }
 
     public float getSalud() {
@@ -61,7 +68,10 @@ public abstract class Guerrero implements Serializable {
     }
 
     public void setSalud(float salud) {
+        if(salud>801){
         this.salud = salud;
+        JOptionPane.showMessageDialog(null, "Salud no cumple con los requisitos");
+        }
     }
 
     public float getPuntos() {
