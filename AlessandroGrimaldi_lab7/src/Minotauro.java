@@ -13,7 +13,9 @@ public class Minotauro extends Guerrero {
 
     @Override
     public float ataque(float defensaRival, float vidaRival, float ataqueRival) {
-        
+        float attack = (float) (ataque * 2);
+        float def = (float) (defensaRival * 0.50);
+        vidaRival =  (float) (vidaRival - ((ataque+attack) - (defensaRival+def))) ;
         return vidaRival;
     }
     

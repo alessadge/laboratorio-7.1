@@ -13,7 +13,8 @@ public class Fenix extends Guerrero {
 
     @Override
     public float ataque(float defensaRival, float vidaRival, float ataqueRival) {
-        
+        float attack = (float) (ataque * 0.75);
+        vidaRival =  (float) (vidaRival - ((ataque+attack) - defensaRival)) ;
         return vidaRival;
     }
     
