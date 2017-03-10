@@ -1,5 +1,9 @@
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
 /*
@@ -62,7 +66,7 @@ public class Main extends javax.swing.JFrame {
         tf_numeroAlumno = new javax.swing.JTextField();
         tf_edad = new javax.swing.JTextField();
         jButton8 = new javax.swing.JButton();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        tab = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -71,12 +75,12 @@ public class Main extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jButton7 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        jComboBox1 = new javax.swing.JComboBox();
+        cb_guerreros = new javax.swing.JComboBox();
         jLabel2 = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
-        jComboBox2 = new javax.swing.JComboBox();
+        cb_guerreros1 = new javax.swing.JComboBox();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -93,6 +97,11 @@ public class Main extends javax.swing.JFrame {
         jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton4MouseClicked(evt);
+            }
+        });
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
             }
         });
 
@@ -274,6 +283,12 @@ public class Main extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Juego");
 
+        tab.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                tabStateChanged(evt);
+            }
+        });
+
         jButton1.setText("Pelear!");
 
         jButton2.setText("Nueva partida");
@@ -299,7 +314,7 @@ public class Main extends javax.swing.JFrame {
                 .addContainerGap(193, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Jugar", jPanel1);
+        tab.addTab("Jugar", jPanel1);
 
         jButton3.setText("Agregar Bestia");
         jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -345,7 +360,7 @@ public class Main extends javax.swing.JFrame {
                 .addContainerGap(183, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Agregar", jPanel2);
+        tab.addTab("Agregar", jPanel2);
 
         jLabel2.setText("Escoja un personaje:");
 
@@ -363,7 +378,7 @@ public class Main extends javax.swing.JFrame {
                         .addGap(87, 87, 87)
                         .addComponent(jLabel2)
                         .addGap(92, 92, 92)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cb_guerreros, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(148, 148, 148)
                         .addComponent(jButton5)
@@ -376,7 +391,7 @@ public class Main extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(47, 47, 47)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cb_guerreros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addGap(136, 136, 136)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -385,7 +400,7 @@ public class Main extends javax.swing.JFrame {
                 .addContainerGap(141, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Modificar/Eliminar", jPanel3);
+        tab.addTab("Modificar/Eliminar", jPanel3);
 
         jLabel3.setText("Listar:");
 
@@ -410,7 +425,7 @@ public class Main extends javax.swing.JFrame {
                         .addGap(73, 73, 73)
                         .addComponent(jLabel3)
                         .addGap(31, 31, 31)
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cb_guerreros1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(105, 105, 105)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -421,14 +436,14 @@ public class Main extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(49, 49, 49)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cb_guerreros1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24))
         );
 
-        jTabbedPane1.addTab("Listar", jPanel4);
+        tab.addTab("Listar", jPanel4);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -436,14 +451,14 @@ public class Main extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tab, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(32, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(19, 19, 19)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 395, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tab, javax.swing.GroupLayout.PREFERRED_SIZE, 395, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(24, Short.MAX_VALUE))
         );
 
@@ -468,6 +483,7 @@ public class Main extends javax.swing.JFrame {
         float salud;
         String tipo;
         String nickname;
+        Guerrero p = null;
         nickname = tf_nickname.getText();
         nombre = tf_nombre.getText();
         ataque = Float.parseFloat(tf_ataque.getText());
@@ -475,18 +491,30 @@ public class Main extends javax.swing.JFrame {
         salud = Float.parseFloat(tf_salud.getText());
         tipo = this.cb_tipo.getItemAt(cb_tipo.getSelectedIndex());
         if(tipo.equalsIgnoreCase("dragon")){
-        guerreros.add(new Dragon(nombre, nickname,ataque, defensa, salud, 0));
+        p= new Dragon(nombre, nickname,ataque, defensa, salud, 0);
+        guerreros.add(p);
                 }
         if(tipo.equalsIgnoreCase("fenix")){
-        guerreros.add(new Fenix(nombre,nickname, ataque, defensa, salud, 0));
+        p= new Fenix(nombre, nickname,ataque, defensa, salud, 0);
+        guerreros.add(p);
                 }
         if(tipo.equalsIgnoreCase("hombre lobo")){
-        guerreros.add(new Hombre(nombre, nickname,ataque, defensa, salud, 0));
+        p= new Hombre(nombre, nickname,ataque, defensa, salud, 0);
+        guerreros.add(p);
                 }
         if(tipo.equalsIgnoreCase("minotauro")){
-        guerreros.add(new Minotauro(nombre, nickname,ataque, defensa, salud, 0));
+        p= new Minotauro(nombre, nickname,ataque, defensa, salud, 0);
+        guerreros.add(p);
                 }
         JOptionPane.showMessageDialog(this,"Se agrego exitosamente");
+        administarGuerreros ap = new administarGuerreros("./Guerreros.cbm");
+        try {
+            ap.cargarArchivo();
+        } catch (IOException | ClassNotFoundException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        ap.setGuerrero(p);
+        ap.escribirArchivo();
     }//GEN-LAST:event_jButton4MouseClicked
 
     private void jButton7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseClicked
@@ -504,8 +532,10 @@ public class Main extends javax.swing.JFrame {
         float defensa;
         int numero, edad;
         float salud;
-        String tipo,carrera;
+        Guerrero p;
+        String carrera;
         String nickname;
+        
         nickname = tf_nicknameAlumno.getText();
         nombre = tf_nombreAlumno.getText();
         ataque = Float.parseFloat(tf_ataqueAlumno.getText());
@@ -514,10 +544,45 @@ public class Main extends javax.swing.JFrame {
         carrera = tf_carrera.getText(); 
         numero = Integer.parseInt(tf_numeroAlumno.getText());
         edad = Integer.parseInt(tf_edad.getText());
-        guerreros.add(new Alumnos(numero,carrera, edad,nombre, nickname, ataque, defensa, salud, 0 ));
+        
+        p=new Alumnos(numero,carrera, edad,nombre, nickname, ataque, defensa, salud, 0 );
+        guerreros.add(p);
+        administarGuerreros ap = new administarGuerreros("./Guerreros.cbm");
+        
+        try {
+            ap.cargarArchivo();
+        } catch (IOException | ClassNotFoundException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        ap.setGuerrero(p);
+        ap.escribirArchivo();
         JOptionPane.showMessageDialog(this,"Se agrego exitosamente");
         
     }//GEN-LAST:event_jButton8MouseClicked
+
+    private void tabStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_tabStateChanged
+        // TODO add your handling code here:
+            if(tab.getSelectedIndex()==2){
+            DefaultComboBoxModel model = new DefaultComboBoxModel();
+            for (Guerrero t : guerreros) {
+                model.addElement(t);
+            }
+            cb_guerreros.setModel(model);
+            
+        }
+        if(tab.getSelectedIndex()==3){
+        DefaultComboBoxModel model = new DefaultComboBoxModel();
+            for (Guerrero t : guerreros) {
+                model.addElement(t);
+            }
+            cb_guerreros1.setModel(model);
+        
+        }
+    }//GEN-LAST:event_tabStateChanged
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -555,6 +620,8 @@ public class Main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox cb_guerreros;
+    private javax.swing.JComboBox cb_guerreros1;
     private javax.swing.JComboBox<String> cb_tipo;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -564,8 +631,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
-    private javax.swing.JComboBox jComboBox1;
-    private javax.swing.JComboBox jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -588,10 +653,10 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JDialog jd_agregar;
     private javax.swing.JDialog jd_agregarAlumno;
+    private javax.swing.JTabbedPane tab;
     private javax.swing.JTextField tf_ataque;
     private javax.swing.JTextField tf_ataqueAlumno;
     private javax.swing.JTextField tf_carrera;
