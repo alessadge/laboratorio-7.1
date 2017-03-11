@@ -9,11 +9,7 @@ public class Fenix extends Guerrero {
         super(nombre, nickname, ataque, defensa, salud, puntos);
     }
 
-    @Override
-    public String toString() {
-        return nombre;
-    }
-
+    
    
 
     @Override

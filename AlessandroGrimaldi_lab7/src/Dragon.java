@@ -9,11 +9,7 @@ public class Dragon extends Guerrero {
         super(nombre, nickname, ataque, defensa, salud, puntos);
     }
 
-    @Override
-    public String toString() {
-        return nombre;
-    }
-
+   
     
     @Override
     public float ataque(float defensaRival, float vidaRival, float ataqueRival) {

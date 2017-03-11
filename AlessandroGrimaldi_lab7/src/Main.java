@@ -104,7 +104,7 @@ public class Main extends javax.swing.JFrame {
         buttonGroup1 = new javax.swing.ButtonGroup();
         tab = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        tab5 = new javax.swing.JTabbedPane();
         jPanel7 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         cb_jugador2 = new javax.swing.JComboBox<>();
@@ -114,9 +114,9 @@ public class Main extends javax.swing.JFrame {
         tf_id = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jPanel8 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        list = new javax.swing.JList<>();
         jButton2 = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        Tabla2 = new javax.swing.JTable();
         jPanel9 = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
@@ -467,6 +467,12 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
+        tab5.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                tab5StateChanged(evt);
+            }
+        });
+
         jLabel3.setText("Elija jugador 1:");
 
         jLabel27.setText("Elija jugador 1:");
@@ -520,9 +526,7 @@ public class Main extends javax.swing.JFrame {
                 .addContainerGap(88, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Crear pelea", jPanel7);
-
-        jScrollPane2.setViewportView(list);
+        tab5.addTab("Crear pelea", jPanel7);
 
         jButton2.setText("Empezar batalla");
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -531,28 +535,42 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
+        Tabla2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        Tabla2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane3.setViewportView(Tabla2);
+
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
-                .addGap(97, 97, 97)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(118, Short.MAX_VALUE))
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addGap(97, 97, 97)
+                        .addComponent(jButton2))
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addGap(68, 68, 68)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 505, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+            .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap(30, Short.MAX_VALUE)
                 .addComponent(jButton2)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29))
         );
 
-        jTabbedPane1.addTab("Empezar peleas", jPanel8);
+        tab5.addTab("Empezar peleas", jPanel8);
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -565,7 +583,7 @@ public class Main extends javax.swing.JFrame {
             .addGap(0, 292, Short.MAX_VALUE)
         );
 
-        jTabbedPane1.addTab("Tabla de ganadores", jPanel9);
+        tab5.addTab("Tabla de ganadores", jPanel9);
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
@@ -578,7 +596,7 @@ public class Main extends javax.swing.JFrame {
             .addGap(0, 292, Short.MAX_VALUE)
         );
 
-        jTabbedPane1.addTab("Vitacora", jPanel10);
+        tab5.addTab("Bitacora", jPanel10);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -586,14 +604,14 @@ public class Main extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(36, 36, 36)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 631, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tab5, javax.swing.GroupLayout.PREFERRED_SIZE, 631, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(28, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(26, 26, 26)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tab5, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
@@ -1022,6 +1040,10 @@ public class Main extends javax.swing.JFrame {
 
     private void jButton7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseClicked
         // TODO add your handling code here:
+        jd_agregarAlumno.setModal(true);
+        jd_agregarAlumno.pack();
+        jd_agregarAlumno.setLocationRelativeTo(this);
+        jd_agregarAlumno.setVisible(true);
     }//GEN-LAST:event_jButton7MouseClicked
 
     private void tf_nombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_nombreActionPerformed
@@ -1279,7 +1301,8 @@ public class Main extends javax.swing.JFrame {
         
         jugador1=cb_jugador1.getItemAt(cb_jugador1.getSelectedIndex());
         jugador2=cb_jugador2.getItemAt(cb_jugador2.getSelectedIndex());
-        ID= tf_id.getText();
+        
+        ID = tf_id.getText();
         p=new Batallas(jugador1, jugador2, ID);
         batallas.add(p);
         administrarBatalla ap = new administrarBatalla("./Guerreros.cbm");
@@ -1291,6 +1314,22 @@ public class Main extends javax.swing.JFrame {
         ap.setBatalla(p);
         ap.escribirArchivo();
         
+        Tabla2.setModel(new javax.swing.table.DefaultTableModel(new Object[][]{},new String[]{"Contrincante #1",
+                "Contrincante #2","Vida de #1","Vida #2","ID"}));
+        DefaultTableModel modelo=(DefaultTableModel) Tabla.getModel();
+        for (Batallas t : batallas) {
+
+            Object[] row = {
+                t.getJugador1().getNombre(),
+                t.getJugador2().getNombre(),
+                t.getJugador1().getSalud(),
+                t.getJugador2().getSalud(),
+                t.getID()
+            };
+            modelo.addRow(row);
+            
+        }
+        Tabla2.setModel(modelo);
         
         
     }//GEN-LAST:event_jButton1MouseClicked
@@ -1298,10 +1337,32 @@ public class Main extends javax.swing.JFrame {
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
         // TODO add your handling code here:
         for (Batallas t : batallas) {
-         b.start();            
+            t.start();
         }
-       
+        
+        
     }//GEN-LAST:event_jButton2MouseClicked
+
+    private void tab5StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_tab5StateChanged
+        // TODO add your handling code here:
+        if(tab5.getSelectedIndex()==0){
+            DefaultComboBoxModel model = new DefaultComboBoxModel();
+            for (Guerrero t : guerreros) {
+                model.addElement(t);
+                
+            }
+             cb_jugador1.setModel(model);
+        }
+
+            if(tab5.getSelectedIndex()==0){
+            DefaultComboBoxModel model = new DefaultComboBoxModel();
+            for (Guerrero t : guerreros) {
+                model.addElement(t);
+
+            }
+            cb_jugador2.setModel(model);
+            }
+    }//GEN-LAST:event_tab5StateChanged
 
     /**
      * @param args the command line arguments
@@ -1346,6 +1407,7 @@ public class Main extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable Tabla;
+    private javax.swing.JTable Tabla2;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox cb_guerrerosAlumnos;
     private javax.swing.JComboBox cb_guerrerosBestias;
@@ -1417,14 +1479,13 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JDialog jd_agregar;
     private javax.swing.JDialog jd_agregarAlumno;
     private javax.swing.JDialog jd_modificarAlumno;
-    private javax.swing.JList<String> list;
     private javax.swing.JTabbedPane tab;
     private javax.swing.JTabbedPane tab1;
+    private javax.swing.JTabbedPane tab5;
     private javax.swing.JTextField tf_ataque;
     private javax.swing.JTextField tf_ataque3;
     private javax.swing.JTextField tf_ataque4;
@@ -1463,5 +1524,5 @@ public class Main extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 ArrayList<Guerrero> guerreros= new ArrayList();
 ArrayList<Batallas> batallas = new ArrayList();
-Batallas b ;
+
 }

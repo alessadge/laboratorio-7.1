@@ -41,7 +41,9 @@ public class administrarBatalla  {
     @Override
     public String toString() {
         return "" + archivo + '}';
-    }    public void cargarArchivo() throws FileNotFoundException, IOException, ClassNotFoundException{
+        
+    }    
+    public void cargarArchivo() throws FileNotFoundException, IOException, ClassNotFoundException{
 
     
         listaBatallas = new ArrayList();
